@@ -1,0 +1,26 @@
+// PIED DE PAGE //
+footer {
+    margin-top: 10px;
+    padding: 10px 0px;
+    background-color: #222222;
+    color: $couleur-txt-nav;
+    .footer-barre-separation {
+        border-bottom: solid $couleur-txt-nav 2px;
+        @media screen and (min-width: 992px) {
+            border: none;
+        }
+    }
+    .footer-tabulation {
+        margin-left: 16%;
+        @media screen and (min-width: 992px) {
+            margin-left: 0;
+        }
+    }
+    img {
+        width: 15%;
+        float: left;
+        @media screen and (min-width: 992px) {
+            width: 35%;
+        }
+    }
+}

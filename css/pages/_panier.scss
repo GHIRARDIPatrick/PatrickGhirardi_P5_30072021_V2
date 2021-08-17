@@ -1,0 +1,52 @@
+    // PANIER //
+    // Liste des Produits en commande //
+    .panier {
+        margin-bottom: 3%;
+        h1 {
+            text-align: center;
+            margin-bottom: 4%;
+        }
+        &-fenetre {
+            height: 400px;
+            padding-top: 10px;
+            border: $couleur-txt-nav 2px solid;
+            margin-top: 1%;
+            @media screen and (min-width: 992px) {
+                height: 123px;
+            }
+            &--002 {
+                margin-top: -80px;
+                @media screen and (min-width: 992px) {
+                    margin-top: 20px;
+                }
+            }
+            &--003 {
+                text-align: center;
+                height: 140px;
+            }
+            img {
+                width: 100%;
+            }
+            input {
+                width: 50px;
+                text-align: center;
+                &:valid {
+                    border: green 2px solid;
+                }
+                &:invalid {
+                    border: red 2px solid;
+                }
+            }
+        }
+    }
+    
+    .panier-contact {
+        input {
+            height: 60%;
+            width: 80%;
+        }
+        button {
+            width: 80%;
+            text-align: center;
+        }
+    }

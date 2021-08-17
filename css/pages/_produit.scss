@@ -1,0 +1,38 @@
+// PRODUIT //
+.produit {
+    margin-bottom: 3%;
+    h1 {
+        text-align: center;
+        margin-bottom: 4%;
+    }
+    img {
+        width: 100%;
+    }
+    &-fenetre {
+        margin: 3% 2%;
+        background-color: white;
+        border: $couleur-fond-de-page 2px solid;
+        border-radius: 30%;
+        color: $couleur-txt-nav;
+        height: 80px;
+        padding: 1% 5%;
+        font-weight: bold;
+        &--002 {
+            text-align: center;
+            padding-top: 25px;
+        }
+        &--003 {
+            height: 140px;
+            text-align: center;
+            padding-top: 25px;
+        }
+        input {
+            width: 50px;
+            text-align: center;
+        }
+        .bouton_commande {
+            margin-top: 5px;
+            padding: 10px;
+        }
+    }
+}

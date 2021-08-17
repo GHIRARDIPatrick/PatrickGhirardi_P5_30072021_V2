@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="fr">
+
+<head>
+    <meta charset="utf-8">
+
+    <!-- TITRE PAGE -->
+    <title> ORINOURS - Filiale du Groupe ORINOCO</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="">
+
+    <!-- ROBOTS INDEXATION & CACHE -->
+    <meta name="robots" content="index, follow, noarchive, nocache">
+
+
+    <!-- RESPONSIVE -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+
+
+    <!-- SCSS / BOOTSTRAP -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+
+
+    <link rel="stylesheet" type="text/css" href="./css/style.css">
+
+
+    <!-- JAVASCRIPT - MON CODE -->
+    <script src="./src/index.js"></script>
+
+
+    <!-- POLICE -->
+    <!-- <link rel="stylesheet" type="text/css" href="./css/font-awesome.css">
+    <link rel="stylesheet" type="text/css" href="./css/et-line.css"> -->
+
+
+    <!-- IMPORT IMAGES SVG -->
+    <script async src="https://kit.fontawesome.com/41f15b7b40.js" crossorigin="anonymous"></script>
+
+</head>
+
+<body>
+    <!-- SCRIPT BUDDLE -->
+    <script src="./dist/app.bundle.js"></script>
+
+    <!-- ENTETE & BARRE DE NAVIGATION -->
+    <nav class="navbar navbar-inverse">
+        <div class="container-fluid">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>                        
+            </button>
+
+                <a class="navbar-brand" href="index.html"><img src="images/Logo.png">ORINOURS</a>
+            </div>
+            <div class="collapse navbar-collapse" id="myNavbar">
+                <ul class="nav navbar-nav navbar-right">
+                    <li><a href="panier.html"><span class="glyphicon glyphicon-shopping-cart"></span> Panier</a></li>
+                    <li><a href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <div class="container-fluid panier">
+        <h1>PANIER</h1>
+        <section class="col-sm-12 col-lg-6">
+            <h2>Liste de votre commande</h2>
+
+            <!-- Article 1 -->
+            <article class="panier-fenetre">
+                <div class="col-sm-12 col-lg-3">
+                    <img src="images/teddy_1.jpg" class="img-responsive" alt="Photo peluche d'ourson avec un poil marron très dense et doux">
+                    <div class="form-group hidden">
+                        <label for="panier-ref" class="control-label col-sm-2">Référence :</label>
+                        <div class="col-lg-10">
+                            <input class="form-control-static" type="text" id="panier-ref" name="panier-ref" required></p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class=" col-lg-5 ">
+                    <p>Produit : Teddy 1</p>
+                    <p>Couleur : </p>
+                    <div class="panier-fenetre--003">
+                        <button class="btn btn-default" type="button" aria-label="Moins en Quantité"> - </button>
+                        <input id="panier-quantite" name="panier-quantite" type="text" value="1" aria-label="Quantité en commande" disabled required></input>
+                        <button class="btn btn-default" type="button" aria-label="Plus en Quantité"> + </button><br>
+                    </div>
+                </div>
+
+                <div class=" col-lg-4 panier-fenetre--002">
+                    <p>Prix Unitaire :
+                        <input type="text" value="200.00" aria-label="Prix Unitaire" disabled required> euros</input>
+                    </p>
+                    <p>Prix Total :
+                        <input type="text" value="200.00" aria-label="Prix Total" disabled required> euros</input>
+                    </p>
+                </div>
+            </article>
+
+        </section>
+
+
+        <section class="col-sm-12 col-lg-6 panier-contact">
+            <h2>Vos coordonnées</h2>
+            <form class="form-horizontal" action="commande.html">
+                <div class="form-group">
+                    <label for="panier-prenom" class="control-label col-sm-2">Prénom :</label>
+                    <div class="col-lg-10">
+                        <input class="form-control-static" type="text" id="panier-prenom" name="panier-prenom" required></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="panier-nom" class="control-label col-sm-2">Nom :</label>
+                    <div class="col-lg-10">
+                        <input class="form-control-static" type="text" id="panier-nom" name="panier-nom" required></p>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label for="panier-adresse" class="control-label col-sm-2">Adresse :</label>
+                    <div class="col-lg-10">
+                        <input class="form-control-static" type="text" id="panier-adresse" name="panier-adresse" required></p>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="panier-ville" class="control-label col-sm-2 ">Ville :</label>
+                    <div class="col-lg-2">
+                        <input id="panier-cpostal" name="panier-ville" class="form-control-static" type="text" alt="Code Postal" pattern="/^([0-9]){5}$/)" minlength="5" maxlength="5" placeholder="CPostal" required></p>
+                    </div>
+                    <div class="col-lg-8">
+                        <input id="panier-ville" name="panier-ville" class="form-control-static" type="text" alt="Ville" pattern="/^([a-z]){1,}$/)" placeholder="Ville" required></p>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <label for="panier-email" class="control-label col-sm-2 ">Email :</label>
+                    <div class="col-lg-10">
+                        <input class="form-control-static" type="email" id="panier-email" name="panier-email" required></p>
+                    </div>
+                </div>
+                <div class="form-group ">
+                    <div class="col-sm-offset-2 col-sm-10 ">
+                        <button id="panier-submit" name="panier-submit" type="submit " class="btn btn-default ">Validation de votre commande</button>
+                    </div>
+                </div>
+            </form>
+
+        </section>
+    </div>
+
+
+    <footer class="container-fluid row ">
+        <div class="col col-lg-3 ">
+            <a><img src="images/RS-Groupe.png " alt="Logo de ORINOCO Group "></a>
+        </div>
+        <div class="col col-lg-5 footer-barre-separation ">
+            <p class="h5 ">ORINOURS, une filiale d'ORINOCO Group</p>
+            <p class="h5 footer-tabulation ">RCS Paris B152 152</p>
+        </div>
+        <div class="col col-lg-4 ">
+            <p class="h5 ">ORIMEUBLE : Mobiliers en bois</p>
+            <p class="h5 ">ORIPHOTO : Appareils photo</p>
+        </div>
+    </footer>
+
+</body>

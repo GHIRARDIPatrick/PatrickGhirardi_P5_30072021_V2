@@ -1,0 +1,23 @@
+{
+    "name": "orinoco-backend",
+    "version": "1.0.0",
+    "description": "",
+    "main": "server.js",
+    "scripts": {
+        "sass": "sass --watch ./sass/main.scss:./css/style.css",
+        "prefix": "postcss ./css/*.css --use autoprefixer -d ./prefixed/",
+        "build": "webpack"
+    },
+    "author": "",
+    "license": "ISC",
+    "dependencies": {
+        "express": "^4.16.4",
+        "uuid": "^3.3.2"
+    },
+    "devDependencies": {
+        "@babel/cli": "^7.14.8",
+        "@babel/core": "^7.15.0",
+        "webpack": "^5.50.0",
+        "webpack-cli": "^4.8.0"
+    }
+}

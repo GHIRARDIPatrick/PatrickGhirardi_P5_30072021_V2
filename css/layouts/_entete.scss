@@ -1,0 +1,19 @@
+    // ENTETE & NAVIGATION //
+    nav {
+        margin-bottom: 10px;
+    }
+    
+    .navbar-brand {
+        margin-top: -50px;
+        @media screen and (min-width: 992px) {
+            margin-top: 0px;
+        }
+        img {
+            width: 10%;
+            float: left;
+            margin-top: -5px;
+            @media screen and (min-width: 992px) {
+                width: 10%;
+            }
+        }
+    }
