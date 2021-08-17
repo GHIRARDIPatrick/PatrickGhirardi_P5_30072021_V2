@@ -4,8 +4,7 @@ let valeur = 0;
 alert("Ca fonctionne");
 
 document
-    .getElementById("produit-moins")
-    .addEventListener("click", function() {
+    .getElementById("produit-moins").addEventListener("click", function() {
         if (produitQuantite < 1) {
             alert("Produit négatif");
         } else {
@@ -18,13 +17,11 @@ document
             }
         }
 
-
     });
 
 
 document
-    .getElementById("produit-plus")
-    .addEventListener("click", function() {
+    .getElementById("produit-plus").addEventListener("click", function() {
         document.getElementById("produit-quantite").innerText = (++produitQuantite.value) + '';
         document.getElementById("produit-commande").disabled = false;
 
