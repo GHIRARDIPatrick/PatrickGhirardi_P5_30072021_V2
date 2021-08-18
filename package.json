@@ -4,7 +4,7 @@
     "description": "",
     "main": "server.js",
     "scripts": {
-        "sass": "sass --watch ./sass/main.scss:./css/style.css",
+        "sass": "sass --watch ./css/main.scss:./css/style.css",
         "prefix": "postcss ./css/*.css --use autoprefixer -d ./prefixed/",
         "build": "webpack"
     },

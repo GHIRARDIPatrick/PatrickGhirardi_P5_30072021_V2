@@ -124,7 +124,12 @@ footer img {
 }
 .produit-fenetre--002 {
   text-align: center;
-  padding-top: 25px;
+  padding-top: 15px;
+}
+@media screen and (min-width: 992px) {
+  .produit-fenetre--002 {
+    padding-top: 25px;
+  }
 }
 .produit-fenetre--003 {
   height: 140px;
@@ -140,12 +145,18 @@ footer img {
   padding: 10px;
 }
 
-.panier {
-  margin-bottom: 3%;
-}
 .panier h1 {
   text-align: center;
   margin-bottom: 4%;
+}
+.panier h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+@media screen and (min-width: 992px) {
+  .panier h2 {
+    font-size: 25px;
+  }
 }
 .panier-fenetre {
   height: 400px;
@@ -174,7 +185,7 @@ footer img {
   width: 100%;
 }
 .panier-fenetre input {
-  width: 50px;
+  width: 80px;
   text-align: center;
 }
 .panier-fenetre input:valid {
@@ -182,6 +193,19 @@ footer img {
 }
 .panier-fenetre input:invalid {
   border: red 2px solid;
+}
+.panier-fenetre-total {
+  text-align: center;
+  height: 60px;
+}
+.panier-fenetre-total p {
+  font-weight: bold;
+}
+
+@media screen and (min-width: 992px) {
+  .panier-ville--002 {
+    margin-left: -22px;
+  }
 }
 
 .panier-contact input {
@@ -191,6 +215,54 @@ footer img {
 .panier-contact button {
   width: 80%;
   text-align: center;
+}
+
+/* The Modal (background) */
+.modal {
+  display: none;
+  /* Hidden by default */
+  position: fixed;
+  /* Stay in place */
+  z-index: 1;
+  /* Sit on top */
+  padding-top: 100px;
+  /* Location of the box */
+  left: 0;
+  top: 0;
+  width: 100%;
+  /* Full width */
+  height: 100%;
+  /* Full height */
+  overflow: auto;
+  /* Enable scroll if needed */
+  background-color: black;
+  /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.4);
+  /* Black w/ opacity */
+}
+
+/* Modal Content */
+.modal-content {
+  background-color: #fefefe;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* The Close Button */
+.close {
+  color: black;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+}
+
+.close:hover,
+.close:focus {
+  color: green;
+  text-decoration: none;
+  cursor: pointer;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -19,7 +19,10 @@
         font-weight: bold;
         &--002 {
             text-align: center;
-            padding-top: 25px;
+            padding-top: 15px;
+            @media screen and (min-width: 992px) {
+                padding-top: 25px;
+            }
         }
         &--003 {
             height: 140px;
