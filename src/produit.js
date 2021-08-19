@@ -4,7 +4,7 @@
 indexobjet_json = sessionStorage.getItem("index");
 if (indexobjet_json != null) {
     alert("BON");
-    var indexobjet = JSON.parse(indexobjet_json);
+    indexobjet = JSON.parse(indexobjet_json);
     selectionid = indexobjet.IndexID;
 } else {
     alert("FAUX");
@@ -96,6 +96,84 @@ document.getElementById("produit-plus").addEventListener("click", function() {
 document.getElementById("produit-commande").addEventListener("click", function() {
     if (produitCouleur.value || "") {
         alert("Mis en Panier");
+        nbpanier_json = sessionStorage.getItem("Nb_Panier");
+        // COMMANDE -- Controle nb produits dans le PANIER
+        if (nbpanier_json != null) {
+            alert("BON Nb Panier");
+            var nbpanierobjet = JSON.parse(nbpanier_json);
+            nbpanier = nbpanierobjet.nbpanier;
+
+        } else {
+            // COMMANDE -- Création Nb Article dans PANIER
+            alert("FAUX Nb Panier");
+            var nbpanierobjet = {
+                nbpanier: 1,
+            };
+            var nbpanierobjet_json = JSON.stringify(nbpanierobjet);
+            sessionStorage.setItem("Nb_Panier", nbpanierobjet_json);
+            nbpanier = 1;
+        }
+
+        // COMMANDE -- Si 1er Article dans Panier, mémorisation article dans panier
+        if (nbpanier == 1) {
+            var nbpanierobjet = {
+                ArticleID: indexobjet.IndexID,
+                ArticleNom: indexobjet.IndexNom,
+                ArticleCouleur: produitCouleur.value,
+                ArticleDescrption: indexobjet.Indexdescription,
+                ArticlePrix: indexobjet.IndexPrix,
+                ArticleQuantite: produitQuantite.value,
+            };
+            var panierobjet_json = JSON.stringify(nbpanierobjet);
+            sessionStorage.setItem("Panier" + nbpanier, panierobjet_json);
+        } else {
+            // COMMANDE - recherche si article déjà existant
+            numeroarticle == 0;
+            alert("Deuxieme partie");
+            for (let i = 1; i < nbpanier; i++) {
+                panier_json = sessionStorage.getItem("Panier" + i);
+                if (panier_json != null) {
+                    aler("entrer");
+                    panierarticle = JSON.parse(panier_json);
+                    if (panierarticle.ArticleID == IndexID && panierarticle.ArticleCouleur == produitCouleur.value) {
+                        numeroarticle = i;
+                        i == nbpanier;
+                    }
+
+                }
+            }
+
+            // COMMANDE - Création Article
+            alert("Numero Article : " + numeroarticle);
+            if (numeroarticle == 0) {
+                // COMMANDE -- MAJ du nb produits dans le PANIER
+                var nbpanierobjet = {
+                    nbpanier: ++nbpanier,
+                };
+                var nbpanierobjet_json = JSON.stringify(nbpanierobjet);
+                sessionStorage.setItem("Nb_Panier", nbpanierobjet_json);
+                alert("Nb panier : " + nbpanier)
+
+
+                numeroarticle == nbpanier;
+            }
+            var nbpanierobjet = {
+                ArticleID: indexobjet.IndexID,
+                ArticleNom: indexobjet.IndexNom,
+                ArticleCouleur: produitCouleur.value,
+                ArticleDescrption: indexobjet.Indexdescription,
+                ArticlePrix: indexobjet.IndexPrix,
+                ArticleQuantite: produitQuantite.value,
+            };
+            var panierobjet_json = JSON.stringify(nbpanierobjet);
+            sessionStorage.setItem("Panier" + numeroarticle, panierobjet_json);
+
+        }
+
+
+
+
+
     } else {
         alert("Merci de renseigner une couleur");
     }
