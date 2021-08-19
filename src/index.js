@@ -31,9 +31,19 @@ fetch("http://127.0.0.1:3000/api/teddies")
         // Une erreur est survenue
     });
 
+// INDEX - Mémorisation des données sélectionnées
 function myFunction(x) {
     alert(x);
     alert(produit[x].name);
 
+    var indexobjet = {
+        IndexID: produit[x]._id,
+        IndexNom: produit[x].name,
+        IndexCouleur: produit[x].colors,
+        indexDescrption: produit[x].description,
+        IndexPrix: produit[x].price
+    };
+    var indexobjet_json = JSON.stringify(indexobjet);
+    sessionStorage.setItem("index", indexobjet_json);
 
 };
