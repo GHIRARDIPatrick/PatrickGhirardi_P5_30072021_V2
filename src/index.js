@@ -1,6 +1,6 @@
 // ________________________________________________________________________________________________________________
 // INDEX - Affichage des oursons en liste
-
+var messageErreur;
 
 alert("JS INDEX - Ca fonctionne");
 
@@ -28,6 +28,7 @@ fetch("http://127.0.0.1:3000/api/teddies")
     })
     .catch(function(err) {
         alert("message erreur");
+        messageErreur("ERREUR CONNEXION SERVER|Veuillez retenter la connexion dans quelques minutes... Merci.");
         // Une erreur est survenue
     });
 
@@ -47,3 +48,25 @@ function myFunction(x) {
     sessionStorage.setItem("index", indexobjet_json);
 
 };
+
+
+
+// INDEX - FENETRE MESSAGE ERREUR
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+
+function messageErreur(messErr) {
+    modal.style.display = "block";
+    document.getElementById("panier-message").innerText = messErr;
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}
