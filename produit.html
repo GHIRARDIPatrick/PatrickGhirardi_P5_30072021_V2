@@ -51,7 +51,7 @@
               <span class="icon-bar"></span>                        
             </button>
 
-                <a class="navbar-brand" href="index.html"><img src="images/Logo.png">ORINOURS</a>
+                <a class="navbar-brand" href="index.html"><img src="images/Logo.png" alt="Logo du Groupe ORINOCO">ORINOURS</a>
             </div>
             <div class="collapse navbar-collapse" id="myNavbar">
                 <ul class="nav navbar-nav navbar-right">
@@ -63,33 +63,23 @@
     </nav>
 
     <div class="container-fluid produit">
-        <h1>Teddy 1</h1>
+        <h1 id="produit-nom">Teddy 1</h1>
+
+        <div id="JS-image"></div>
+
         <div class=" col-lg-6">
 
-            <img src="images/teddy_1.jpg" alt="Photo peluche d'ourson avec un poil marron très dense et doux">
-        </div>
-        <div class=" col-lg-6">
-
-            <p class="produit-fenetre">Description : </p>
+            <p id="produit-description" class="produit-fenetre">Description : </p>
 
             <div class="produit-fenetre produit-fenetre--002">
                 <label for="produit-couleur" class="control-label col-sm-4">Choix Couleur :</label>
                 <select name="produit-couleur" id="produit-couleur-selection">
-                    <option value="">--Choisissez une couleur--</option>
-                    <option value="couleur1">Couleur 1</option>
-                    <option value="couleur2">Couleur 2</option>
-                    <option value="couleur3">Couleur 3</option>
                 </select>
             </div>
 
-            <p class="produit-fenetre produit-fenetre--002">Prix : 200 euros</p>
+            <p id="produit-prix" class="produit-fenetre produit-fenetre--002">Prix : </p>
 
-            <div class="form-group hidden">
-                <label for="produit-ref" class="control-label col-sm-2">Référence :</label>
-                <div class="col-lg-10">
-                    <input class="form-control-static" type="text" id="produit-ref" name="produit-ref" required></p>
-                </div>
-            </div>
+            <span id="produit-id" class="hidden"></span>
 
             <div class="produit-fenetre produit-fenetre--003">
                 <button id="produit-moins" class="btn btn-default" type="button" aria-label="Moins en Quantité"> - </button>
