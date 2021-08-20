@@ -2,22 +2,21 @@
 // INDEX - Affichage des oursons en liste
 var messageErreur;
 
-alert("JS INDEX - Ca fonctionne");
+console.log("JS INDEX - Ca fonctionne");
 
 fetch("http://127.0.0.1:3000/api/teddies")
     .then(function(res) {
         if (res.ok) {
-            alert("res.ok");
+            console.log("INDEX - Connexion Server GET : res.ok ");
             return res.json();
         }
     })
     .then(function(resultat) {
-        alert("2ème Then");
+        console.log("INDEX - Lecture des résultats du GET");
         var produitNombre = resultat.length;
         produit = resultat;
-        alert(resultat);
-        alert(produit[0].colors[1])
-        alert(produitNombre)
+        console.log("INDEX - Lecture résultat " + resultat);
+        console.log("INDEX - Nb Articles téléchargés : " + produitNombre)
 
         for (let i = 0; i < produitNombre; i++) {
             document.getElementById("JS").innerHTML += '<a onclick="myFunction(' + i + ')" href="produit.html" class="col-lg-4"><article><img src="' + produit[i].imageUrl + '" alt="Photo ' + produit[i].description + '"><h2 id>' + produit[i].name + '</h2><p>Prix : ' + produit[i].price / 100 + ' euros</p><span class="hidden">' + produit[i]._id + '"</span></article></a>';
@@ -27,15 +26,16 @@ fetch("http://127.0.0.1:3000/api/teddies")
 
     })
     .catch(function(err) {
-        alert("message erreur");
-        messageErreur("ERREUR CONNEXION SERVER|Veuillez retenter la connexion dans quelques minutes... Merci.");
         // Une erreur est survenue
+        console.log("INDEX - Erreur dans le GET");
+        messageErreur("ERREUR CONNEXION SERVER|Veuillez retenter la connexion dans quelques minutes... Merci.");
+
     });
 
 // INDEX - Mémorisation des données sélectionnées
 function myFunction(x) {
-    alert(x);
-    alert(produit[x].name);
+    console.log(x);
+    console.log(produit[x].name);
 
     var indexobjet = {
         IndexID: produit[x]._id,
@@ -45,7 +45,7 @@ function myFunction(x) {
         IndexPrix: produit[x].price
     };
     var indexobjet_json = JSON.stringify(indexobjet);
-    sessionStorage.setItem("index", indexobjet_json);
+    localStorage.setItem("index", indexobjet_json);
 
 };
 

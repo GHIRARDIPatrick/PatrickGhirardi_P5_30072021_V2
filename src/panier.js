@@ -1,7 +1,10 @@
 // ________________________________________________________________________________________________________________
 // PANIER - Controle Formulaire
 
-alert("JS PANIER - Ca fonctionne");
+console.log("JS PANIER - Ca fonctionne");
+
+
+
 var messageErreur;
 
 document.getElementById("panier-prenom").addEventListener("input", function() {

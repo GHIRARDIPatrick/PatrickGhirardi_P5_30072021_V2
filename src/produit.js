@@ -1,13 +1,15 @@
 // ________________________________________________________________________________________________________________
 // PRODUIT - RECUPERATION SELECTION PRODUIT INDEX
 
-indexobjet_json = sessionStorage.getItem("index");
+console.log("JS PRODUIT - Ca fonctionne");
+
+indexobjet_json = localStorage.getItem("index");
 if (indexobjet_json != null) {
-    alert("BON");
+    console.log("PRODUIT - Controle si LocalStorage INDEX existant : OUI");
     indexobjet = JSON.parse(indexobjet_json);
     selectionid = indexobjet.IndexID;
 } else {
-    alert("FAUX");
+    console.log("PRODUIT - Controle si LocalStorage INDEX existant : NON --> Renvoi en INDEX.HTML");
     window.location.href = "index.html";
 }
 
@@ -16,17 +18,16 @@ if (indexobjet_json != null) {
 fetch("http://127.0.0.1:3000/api/teddies/?_id=' + produit_id[0] + '")
     .then(function(res) {
         if (res.ok) {
-            alert("res.ok");
+            console.log("INDEX - Connexion Server GET : res.ok ");
             return res.json();
         }
     })
     .then(function(resultat) {
-        alert("2ème Then");
+        console.log("PRODUIT - Lecture des résultats du GET");
         var produitNombre = resultat.length;
         produit = resultat;
-        alert(resultat);
-        alert(produit[0].colors[1])
-        alert(produitNombre)
+        console.log("PRODUIT - Lecture résultat " + resultat);
+        console.log("PRODUIT - Nb Articles téléchargés : " + produitNombre)
 
         // PRODUIT - MODIFICATION PAGE HTML INFORMATIONS PRODUIT
         for (let i = 0; i < produitNombre; i++) {
@@ -53,8 +54,9 @@ fetch("http://127.0.0.1:3000/api/teddies/?_id=' + produit_id[0] + '")
 
     })
     .catch(function(err) {
-        alert("message erreur");
         // Une erreur est survenue
+        console.log("INDEX - Erreur dans le GET");
+        messageErreur("ERREUR CONNEXION SERVER|Veuillez retenter la connexion dans quelques minutes... Merci.");
     });
 
 
@@ -65,15 +67,13 @@ const produitCouleur = document.getElementById("produit-couleur-selection");
 let valeur = 0;
 
 
-
-alert("JS PRODUIT - Ca fonctionne");
-
 document
     .getElementById("produit-moins").addEventListener("click", function() {
         if (--produitQuantite.value < 0) {
             produitQuantite.value = 0;
             document.getElementById("produit-quantite").innerText = (produitQuantite) + ' ';
-            alert("Produit négatif");
+            console.log("Produit négatif");
+            messageErreur("Quantité : Vous ne pouvez avoir une quantité inférieure à zéro.");
 
         } else {
             if (produitQuantite.value < 1) {
@@ -93,30 +93,36 @@ document.getElementById("produit-plus").addEventListener("click", function() {
     document.getElementById("produit-commande").disabled = false;
 });
 
+
+// PRODUIT - BOUTON COMMANDE + CONTROLE MIS AU PANIER
 document.getElementById("produit-commande").addEventListener("click", function() {
     if (produitCouleur.value || "") {
-        alert("Mis en Panier");
-        nbpanier_json = sessionStorage.getItem("Nb_Panier");
-        // COMMANDE -- Controle nb produits dans le PANIER
-        if (nbpanier_json != null) {
-            alert("BON Nb Panier");
-            var nbpanierobjet = JSON.parse(nbpanier_json);
-            nbpanier = nbpanierobjet.nbpanier;
+        console.log("PRODUIT- Mis en Panier");
+        nbLignePanier_json = localStorage.getItem("Nb_Ligne_Panier");
 
+        // PRODUIT -- Controle nb produits dans le PANIER
+        if (nbLignePanier_json != null) {
+            var nbLignePanierobjet = JSON.parse(nbLignePanier_json);
+            nbLignePanier = nbLignePanierobjet.nbLignePanier;
+            console.log("PRODUIT - GET LocalStorage - Nb de lignes du Panier récupéré : OUI - " + nbLignePanier);
         } else {
-            // COMMANDE -- Création Nb Article dans PANIER
-            alert("FAUX Nb Panier");
-            var nbpanierobjet = {
-                nbpanier: 1,
-            };
-            var nbpanierobjet_json = JSON.stringify(nbpanierobjet);
-            sessionStorage.setItem("Nb_Panier", nbpanierobjet_json);
-            nbpanier = 1;
+            console.log("PRODUIT - GET LocalStorage - Nb de lignes du Panier récupéré : NON");
+            nbLignePanier = 0;
         }
 
         // COMMANDE -- Si 1er Article dans Panier, mémorisation article dans panier
-        if (nbpanier == 1) {
-            var nbpanierobjet = {
+        if (nbLignePanier === 0) {
+            // COMMANDE -- Création Nb Article dans PANIER
+            nbLignePanier = ++nbLignePanier;
+            var nbLignePanierobjet = {
+                nbLignePanier: nbLignePanier
+            };
+            var nbLignePanier_json = JSON.stringify(nbLignePanierobjet);
+            localStorage.setItem("Nb_Ligne_Panier", nbLignePanier_json);
+            console.log("PRODUIT - Création LocalStorage - Nb Lignes Paniers");
+
+
+            var articleobjet = {
                 ArticleID: indexobjet.IndexID,
                 ArticleNom: indexobjet.IndexNom,
                 ArticleCouleur: produitCouleur.value,
@@ -124,40 +130,48 @@ document.getElementById("produit-commande").addEventListener("click", function()
                 ArticlePrix: indexobjet.IndexPrix,
                 ArticleQuantite: produitQuantite.value,
             };
-            var panierobjet_json = JSON.stringify(nbpanierobjet);
-            sessionStorage.setItem("Panier" + nbpanier, panierobjet_json);
+            var articleobjet_json = JSON.stringify(articleobjet);
+            localStorage.setItem("lignePanier" + nbLignePanier, articleobjet_json);
+            console.log("PRODUIT - Création LocalStorage - 1ère ligne Panier");
+
         } else {
             // COMMANDE - recherche si article déjà existant
-            numeroarticle == 0;
-            alert("Deuxieme partie");
-            for (let i = 1; i < nbpanier; i++) {
-                panier_json = sessionStorage.getItem("Panier" + i);
-                if (panier_json != null) {
-                    aler("entrer");
-                    panierarticle = JSON.parse(panier_json);
-                    if (panierarticle.ArticleID == IndexID && panierarticle.ArticleCouleur == produitCouleur.value) {
+            numeroarticle = 0;
+            console.log("PRODUIT - Lignes panier > 1");
+            for (let i = 1; i < nbLignePanier; i++) {
+                articleobjet_json = localStorage.getItem("lignePanier" + i);
+                if (articleobjet_json != null) {
+                    console.log("PRODUIT - Lignes panier > 1 - Recherche si Article déjà dans panier");
+                    articleobjet = JSON.parse(articleobjet_json);
+                    console.log("panierarticle.ArticleID = " + articleobjet.ArticleID);
+                    console.log("selectionid = " + selectionid);
+                    console.log("panierarticle.ArticleCouleur = " + articleobjet.ArticleCouleur);
+                    console.log("produitCouleur.value = " + produitCouleur.value);
+
+                    if (articleobjet.ArticleID == selectionid && articleobjet.ArticleCouleur == produitCouleur.value) {
                         numeroarticle = i;
-                        i == nbpanier;
+                        i = nbLignePanier;
                     }
 
                 }
             }
 
+
             // COMMANDE - Création Article
-            alert("Numero Article : " + numeroarticle);
+            console.log("PRODUIT - Numero Article : " + numeroarticle);
             if (numeroarticle == 0) {
                 // COMMANDE -- MAJ du nb produits dans le PANIER
-                var nbpanierobjet = {
-                    nbpanier: ++nbpanier,
+                var nbLignePanierobjet = {
+                    nbLignePanier: ++nbLignePanier,
                 };
-                var nbpanierobjet_json = JSON.stringify(nbpanierobjet);
-                sessionStorage.setItem("Nb_Panier", nbpanierobjet_json);
-                alert("Nb panier : " + nbpanier)
+                var nbLignePanierobjet_json = JSON.stringify(nbLignePanierobjet);
+                localStorage.setItem("Nb_Ligne_Panier", nbLignePanierobjet_json);
+                console.log("PRODUIT - MAJ du Nb Lignes panier : " + nbLignePanier);
 
 
-                numeroarticle == nbpanier;
+                numeroarticle = nbLignePanier;
             }
-            var nbpanierobjet = {
+            var articleobjet = {
                 ArticleID: indexobjet.IndexID,
                 ArticleNom: indexobjet.IndexNom,
                 ArticleCouleur: produitCouleur.value,
@@ -165,16 +179,40 @@ document.getElementById("produit-commande").addEventListener("click", function()
                 ArticlePrix: indexobjet.IndexPrix,
                 ArticleQuantite: produitQuantite.value,
             };
-            var panierobjet_json = JSON.stringify(nbpanierobjet);
-            sessionStorage.setItem("Panier" + numeroarticle, panierobjet_json);
+            var articleobjet_json = JSON.stringify(articleobjet);
+            localStorage.setItem("lignePanier" + numeroarticle, articleobjet_json);
+            console.log("PRODUIT - Création ou MAJ LocalStorage - Ligne Panier");
 
         }
 
 
-
-
+        //PRODUIT - Article mis 
+        Alert("Article mis dans votre panier.");
+        window.location.href = "index.html";
 
     } else {
-        alert("Merci de renseigner une couleur");
+        messageErreur("Merci de renseigner une couleur");
     }
 });
+
+
+
+// PRODUIT - FENETRE MESSAGE ERREUR FORMULAIRE
+var modal = document.getElementById("myModal");
+var btn = document.getElementById("myBtn");
+var span = document.getElementsByClassName("close")[0];
+
+function messageErreur(messErr) {
+    modal.style.display = "block";
+    document.getElementById("produit-message").innerText = messErr;
+}
+
+span.onclick = function() {
+    modal.style.display = "none";
+}
+
+window.onclick = function(event) {
+    if (event.target == modal) {
+        modal.style.display = "none";
+    }
+}

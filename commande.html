@@ -38,9 +38,6 @@
 </head>
 
 <body>
-    <!-- SCRIPT BUDDLE -->
-    <script src="./dist/app.bundle.js"></script>
-
     <!-- ENTETE & BARRE DE NAVIGATION -->
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -62,22 +59,39 @@
         </div>
     </nav>
 
-    <div class="container-fluid commande">
-        <h1>COMMANDE</h1>
+
+    <!-- ERREUR CONNEXION SERVEUR -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">X</span>
+            <p id="index-message">ERREUR CONNEXION SERVEUR<br>Nous sommes désolés du désagrément.</p>
+        </div>
     </div>
 
 
-    <footer class="container-fluid row ">
-        <div class="col col-lg-3 ">
-            <a><img src="images/RS-Groupe.png " alt="Logo de ORINOCO Group "></a>
+
+    <section class="container-fluid liste-produit">
+        <h1 class="text-center">Commande validée</h1>
+
+
+        <div id="JS"></div>
+
+
+    </section>
+
+
+    <!-- PIED DE PAGE -->
+    <footer class="container-fluid row">
+        <div class="col col-lg-3">
+            <a><img src="images/RS-Groupe.png" alt="Logo de ORINOCO Group"></a>
         </div>
-        <div class="col col-lg-5 footer-barre-separation ">
+        <div class="col col-lg-5 footer-barre-separation">
             <p class="h5 ">ORINOURS, une filiale d'ORINOCO Group</p>
-            <p class="h5 footer-tabulation ">RCS Paris B152 152</p>
+            <p class="h5 footer-tabulation">RCS Paris B152 152</p>
         </div>
-        <div class="col col-lg-4 ">
-            <p class="h5 ">ORIMEUBLE : Mobiliers en bois</p>
-            <p class="h5 ">ORIPHOTO : Appareils photo</p>
+        <div class="col col-lg-4">
+            <p class="h5">ORIMEUBLE : Mobiliers en bois</p>
+            <p class="h5">ORIPHOTO : Appareils photo</p>
         </div>
     </footer>
 
@@ -85,6 +99,5 @@
 
     <!-- JAVASCRIPT - MON CODE -->
     <script src="./src/index.js"></script>
-
 
 </body>

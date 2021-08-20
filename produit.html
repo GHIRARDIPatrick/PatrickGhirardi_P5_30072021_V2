@@ -38,9 +38,6 @@
 </head>
 
 <body>
-    <!-- SCRIPT BUDDLE -->
-    <script src="./dist/app.bundle.js"></script>
-
     <!-- ENTETE & BARRE DE NAVIGATION -->
     <nav class="navbar navbar-inverse">
         <div class="container-fluid">
@@ -62,6 +59,17 @@
         </div>
     </nav>
 
+
+    <!-- ERREUR CONNEXION SERVEUR -->
+    <div id="myModal" class="modal">
+        <div class="modal-content">
+            <span class="close">X</span>
+            <p id="produit-message">ERREUR CONNEXION SERVEUR<br>Nous sommes désolés du désagrément.</p>
+        </div>
+    </div>
+
+
+    <!-- PRESENTATION ARTICLE -->
     <div class="container-fluid produit">
         <h1 id="produit-nom">Teddy 1</h1>
 
@@ -91,6 +99,7 @@
     </div>
 
 
+    <!-- PIED DE PAGE -->
     <footer class="container-fluid row">
         <div class="col col-lg-3">
             <a><img src="images/RS-Groupe.png" alt="Logo de ORINOCO Group"></a>
