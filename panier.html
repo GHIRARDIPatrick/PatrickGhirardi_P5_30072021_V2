@@ -69,8 +69,8 @@
         <section class="col-sm-12 col-lg-6">
             <h2>Liste de votre commande</h2>
 
-            <!-- Article 1 -->
-            <article class="panier-fenetre col-lg-12">
+            <!-- Liste Article -->
+            <!-- <article class="panier-fenetre col-lg-12">
                 <div class="col-lg-3">
                     <img src="images/teddy_1.jpg" class="img-responsive" alt="Photo peluche d'ourson avec un poil marron très dense et doux">
                     <div class="form-group hidden">
@@ -85,9 +85,9 @@
                     <p>Produit : Teddy 1</p>
                     <p>Couleur : </p>
                     <div class="panier-fenetre--003">
-                        <button class="btn btn-default" type="button" aria-label="Moins en Quantité"> - </button>
-                        <input id="panier-quantite" name="panier-quantite" type="text" value="1" aria-label="Quantité en commande" disabled required></input>
-                        <button class="btn btn-default" type="button" aria-label="Plus en Quantité"> + </button><br>
+                        <button id="produit-moins" class="btn btn-default" type="button" aria-label="Moins en Quantité"> - </button>
+                        <input id="produit-quantite" type="text" value="1" aria-label="Quantité en commande" disabled required></input>
+                        <button id="produit-plus" class="btn btn-default" type="button" aria-label="Plus en Quantité"> + </button><br>
                     </div>
                 </div>
 
@@ -99,43 +99,15 @@
                         <input type="text" value="200.00" aria-label="Prix Total" disabled required> €</input>
                     </p>
                 </div>
-            </article>
+            </article> -->
 
-            <!-- Article 2 -->
-            <article class="panier-fenetre col-lg-12">
-                <div class="col-lg-3">
-                    <img src="images/teddy_1.jpg" class="img-responsive" alt="Photo peluche d'ourson avec un poil marron très dense et doux">
-                    <div class="form-group hidden">
-                        <label for="panier-ref" class="control-label col-sm-2">Référence :</label>
-                        <div>
-                            <input class="form-control-static" type="text" id="panier-ref" name="panier-ref" required></p>
-                        </div>
-                    </div>
-                </div>
+            <!-- Article PAR JS -->
+            <div id="JS"></div>
 
-                <div class="col-lg-5">
-                    <p>Produit : Teddy 1</p>
-                    <p>Couleur : </p>
-                    <div class="panier-fenetre--003">
-                        <button class="btn btn-default" type="button" aria-label="Moins en Quantité"> - </button>
-                        <input id="panier-quantite" name="panier-quantite" type="text" value="1" aria-label="Quantité en commande" disabled required></input>
-                        <button class="btn btn-default" type="button" aria-label="Plus en Quantité"> + </button><br>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 panier-fenetre--002">
-                    <p>Prix Unitaire :
-                        <input type="text" value="200.00" aria-label="Prix Unitaire" disabled required> €</input>
-                    </p>
-                    <p>Prix Total :
-                        <input type="text" value="200.00" aria-label="Prix Total" disabled required> €</input>
-                    </p>
-                </div>
-            </article>
 
             <!-- Total Commande -->
             <article class="panier-fenetre panier-fenetre-total col-lg-12">
-                <p class="h4">Total TTC : 1 000.00 euros</p>
+                <p id="panier_total" class="h4">Total TTC : 1 000.00 euros</p>
             </article>
         </section>
 

@@ -35,7 +35,9 @@ fetch("http://127.0.0.1:3000/api/teddies/?_id=' + produit_id[0] + '")
                 document.getElementById("produit-id").innerText = produit[i]._id;
                 document.getElementById("produit-nom").innerText = produit[i].name;
                 document.getElementById("JS-image").innerHTML += '<div class="col-lg-6"><img src="' + produit[i].imageUrl + '" alt="Photo ' + produit[i].description + '"></div>';
+                produitImage = produit[i].imageUrl;
                 document.getElementById("produit-description").innerText = produit[i].description;
+                produitDescription = produit[i].description;
                 document.getElementById("produit-prix").innerText = "Prix : " + (produit[i].price / 100) + " euros";
 
                 if (produit[i].colors.length == 1) {
@@ -125,8 +127,9 @@ document.getElementById("produit-commande").addEventListener("click", function()
             var articleobjet = {
                 ArticleID: indexobjet.IndexID,
                 ArticleNom: indexobjet.IndexNom,
+                ArticleImage: produitImage,
                 ArticleCouleur: produitCouleur.value,
-                ArticleDescrption: indexobjet.Indexdescription,
+                ArticleDescription: produitDescription,
                 ArticlePrix: indexobjet.IndexPrix,
                 ArticleQuantite: produitQuantite.value,
             };
@@ -143,10 +146,6 @@ document.getElementById("produit-commande").addEventListener("click", function()
                 if (articleobjet_json != null) {
                     console.log("PRODUIT - Lignes panier > 1 - Recherche si Article déjà dans panier");
                     articleobjet = JSON.parse(articleobjet_json);
-                    console.log("panierarticle.ArticleID = " + articleobjet.ArticleID);
-                    console.log("selectionid = " + selectionid);
-                    console.log("panierarticle.ArticleCouleur = " + articleobjet.ArticleCouleur);
-                    console.log("produitCouleur.value = " + produitCouleur.value);
 
                     if (articleobjet.ArticleID == selectionid && articleobjet.ArticleCouleur == produitCouleur.value) {
                         numeroarticle = i;
@@ -174,8 +173,9 @@ document.getElementById("produit-commande").addEventListener("click", function()
             var articleobjet = {
                 ArticleID: indexobjet.IndexID,
                 ArticleNom: indexobjet.IndexNom,
+                ArticleImage: produitImage,
                 ArticleCouleur: produitCouleur.value,
-                ArticleDescrption: indexobjet.Indexdescription,
+                ArticleDescription: produitDescription,
                 ArticlePrix: indexobjet.IndexPrix,
                 ArticleQuantite: produitQuantite.value,
             };
