@@ -93,9 +93,6 @@ function panier_bouton_moins(x) {
     localStorage.setItem("lignePanier" + x, articleobjet_json);
     console.log("PRODUIT - MAJ LocalStorage - " + x + "  ligne Panier effectué");
 
-    alert("CONTROLE LOCALHOST");
-
-
     window.location.href = "panier.html";
 
 }
@@ -128,18 +125,79 @@ function panier_bouton_plus(x) {
     localStorage.setItem("lignePanier" + x, articleobjet_json);
     console.log("PRODUIT - MAJ LocalStorage - " + x + "  ligne Panier effectué");
 
-    alert("CONTROLE LOCALHOST");
-
-
     window.location.href = "panier.html";
 
 }
 
 
 
+// PANIER - AFFICHAGE CONTACT DEJA SAISIE si existant
+contactobjet_json = localStorage.getItem("contact");
+if (contactobjet_json != null) {
+    contactobjet = JSON.parse(contactobjet_json);
+    contact = contactobjet;
+    console.log("CONTACT - Téléchargement LocalStorage : OUI ");
+
+    document.getElementById("panier-prenom").value = contact.ContactPrenom;
+    document.getElementById("panier-nom").value = contact.ContactNom;
+    document.getElementById("panier-adresse").value = contact.ContactAdresse;
+    document.getElementById("panier-cpostal").value = contact.ContactCpostal;
+    document.getElementById("panier-ville").value = contact.ContactVille;
+    document.getElementById("panier-email").value = contact.ContactEmail;
+
+    // CONTACT - Coloriage Erreur ou Ok
+    document.getElementById("panier-validation").disabled = false;
+
+    var code = document.getElementById("panier-prenom").value;
+    if (!code.match(/^([a-zA-Z -]+)$/)) {
+        document.getElementById("panier-prenom").style.backgroundColor = 'salmon';
+        document.getElementById("panier-validation").disabled = true;
+    } else {
+        document.getElementById("panier-prenom").style.backgroundColor = 'chartreuse';
+    }
+    var code = document.getElementById("panier-nom").value;
+    if (!code.match(/^([a-zA-Z -]+)$/)) {
+        document.getElementById("panier-nom").style.backgroundColor = 'salmon';
+        document.getElementById("panier-validation").disabled = true;
+    } else {
+        document.getElementById("panier-nom").style.backgroundColor = 'chartreuse';
+    }
+    var code = document.getElementById("panier-adresse").value;
+    if (!code.match(/^([a-zA-Z0-9 -]+)$/)) {
+        document.getElementById("panier-adresse").style.backgroundColor = 'salmon';
+        document.getElementById("panier-validation").disabled = true;
+
+    } else {
+        document.getElementById("panier-adresse").style.backgroundColor = 'chartreuse';
+    }
+    var code = document.getElementById("panier-cpostal").value;
+    if (!code.match(/^([0-9]+)$/)) {
+        document.getElementById("panier-cpostal").style.backgroundColor = 'salmon';
+        document.getElementById("panier-validation").disabled = true;
+    } else {
+        document.getElementById("panier-cpostal").style.backgroundColor = 'chartreuse';
+    }
+    var code = document.getElementById("panier-ville").value;
+    if (!code.match(/^([a-zA-Z -]+)$/)) {
+        document.getElementById("panier-ville").style.backgroundColor = 'salmon';
+        document.getElementById("panier-validation").disabled = true;
+    } else {
+        document.getElementById("panier-ville").style.backgroundColor = 'chartreuse';
+    }
+    var code = document.getElementById("panier-email").value;
+    if (!code.length > 0) {
+        document.getElementById("panier-email").style.backgroundColor = 'salmon';
+        document.getElementById("panier-validation").disabled = true;
+    } else {
+        document.getElementById("panier-email").style.backgroundColor = 'chartreuse';
+    }
 
 
-// PANIER - Controle Formulaire
+
+}
+
+
+// CONTACT - CONTROLE FORMULAIRE
 
 document.getElementById("panier-prenom").addEventListener("input", function() {
     var code = document.getElementById("panier-prenom").value;
@@ -150,6 +208,7 @@ document.getElementById("panier-prenom").addEventListener("input", function() {
     } else {
         document.getElementById("panier-prenom").style.backgroundColor = 'chartreuse';
         document.getElementById("panier-validation").disabled = false;
+        contact_maj() = "";
     }
 });
 
@@ -162,6 +221,7 @@ document.getElementById("panier-nom").addEventListener("input", function() {
     } else {
         document.getElementById("panier-nom").style.backgroundColor = 'chartreuse';
         document.getElementById("panier-validation").disabled = false;
+        contact_maj() = "";
     }
 });
 
@@ -174,6 +234,7 @@ document.getElementById("panier-adresse").addEventListener("input", function() {
     } else {
         document.getElementById("panier-adresse").style.backgroundColor = 'chartreuse';
         document.getElementById("panier-validation").disabled = false;
+        contact_maj() = "";
     }
 });
 
@@ -186,6 +247,7 @@ document.getElementById("panier-cpostal").addEventListener("input", function() {
     } else {
         document.getElementById("panier-cpostal").style.backgroundColor = 'chartreuse';
         document.getElementById("panier-validation").disabled = false;
+        contact_maj() = "";
     }
 });
 
@@ -198,6 +260,7 @@ document.getElementById("panier-ville").addEventListener("input", function() {
     } else {
         document.getElementById("panier-ville").style.backgroundColor = 'chartreuse';
         document.getElementById("panier-validation").disabled = false;
+        contact_maj() = "";
     }
 });
 
@@ -209,8 +272,24 @@ document.getElementById("panier-email").addEventListener("input", function() {
     } else {
         document.getElementById("panier-email").style.backgroundColor = 'chartreuse';
         document.getElementById("panier-validation").disabled = false;
+        contact_maj() = "";
     }
 });
+
+function contact_maj() {
+    var contactobjet = {
+        ContactPrenom: document.getElementById("panier-prenom").value,
+        ContactNom: document.getElementById("panier-nom").value,
+        ContactAdresse: document.getElementById("panier-adresse").value,
+        ContactCpostal: document.getElementById("panier-cpostal").value,
+        ContactVille: document.getElementById("panier-ville").value,
+        ContactEmail: document.getElementById("panier-email").value,
+    };
+    var contactobjet_json = JSON.stringify(contactobjet);
+    localStorage.setItem("contact", contactobjet_json);
+    console.log("CONTACT - MAJ LocalStorage effectué");
+}
+
 
 
 
