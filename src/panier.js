@@ -53,6 +53,15 @@ for (let i = 1; i < nbLignePanier + 1; i++) {
 // PANIER - AFFICHAGE TOTAL COMMANDE
 document.getElementById("panier_total").innerText = "Total de la Commande : " + totalCommande + " €";
 if (totalCommande == 0) {
+    localStorage.removeItem("Nb_Ligne_Panier");
+    console.log("PANIER - Suppression LOCALHOST du Nb Ligne Panier - Effectuée");
+    for (let i = 1; i < nbLignePanier + 1; i++) {
+        lignePanierobjet_json = localStorage.getItem("lignePanier" + i);
+        if (lignePanierobjet_json != null) {
+            console.log("PANIER - Suppression LOCALHOST Ligne Panier n° " + i + " - Effectuée");
+            localStorage.removeItem("lignePanier" + i);
+        }
+    }
     window.location.href = "index.html";
 }
 
