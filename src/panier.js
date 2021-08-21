@@ -25,7 +25,7 @@ if (nbLignePanierobjet_json != null) {
 }
 
 
-// PANIER - Affichage Panier
+// PANIER - AFFICHAGE PANIER
 totalCommande = 0;
 for (let i = 1; i < nbLignePanier + 1; i++) {
     lignePanierobjet_json = localStorage.getItem("lignePanier" + i);
@@ -40,7 +40,7 @@ for (let i = 1; i < nbLignePanier + 1; i++) {
         if (lignePanier.ArticleQuantite > 0) {
             //document.getElementById("JS").innerHTML += '<article class="panier-fenetre col-lg-12"><div class="col-lg-3"><img src="images/teddy_1.jpg" class="img-responsive" alt="Photo peluche"><div class="form-group hidden"><label for="panier-ref" class="control-label col-sm-2">Référence :</label><div class="col-lg-10"><input class="form-control-static" type="text" id="panier-ref" name="panier-ref" required></p></div></div></div><div class="col-lg-5"><p>Produit : Teddy 1</p><p>Couleur : </p><div class="panier-fenetre--003">                <button id="produit-moins" class="btn btn-default" type="button" aria-label="Moins en Quantité"> - </button><input id="produit-quantite" type="text" value="1" aria-label="Quantité en commande" disabled required></input><button id="produit-plus" class="btn btn-default" type="button" aria-label="Plus en Quantité"> + </button><br></div></div><div class="col-lg-4 panier-fenetre--002"><p>Prix Unitaire :<input type="text" value="1 000.00" aria-label="Prix Unitaire" disabled required> €</input></p><p>Prix Total :<input type="text" value="200.00" aria-label="Prix Total" disabled required> €</input></p></div></article>';
             totalLigne = (lignePanier.ArticlePrix / 100) * lignePanier.ArticleQuantite;
-            document.getElementById("JS").innerHTML += '<article class="panier-fenetre col-lg-12"><div class="col-lg-3"><img src="' + lignePanier.ArticleImage + '" class="img-responsive" alt="Photo ' + lignePanier.ArticleDescription + '"><div class="form-group hidden"><label for="panier-ref' + i + '" class="control-label col-sm-2">Référence :</label><div class="col-lg-10"><input class="form-control-static" type="text" id="panier-ref' + i + '" name="panier-ref' + i + '" required></p></div></div></div><div class="col-lg-5"><p>Produit : ' + lignePanier.ArticleNom + '</p><p>Couleur : ' + lignePanier.ArticleCouleur + ' </p><div class="panier-fenetre--003"><button id="produit-moins-' + i + '" class="btn btn-default" type="button" aria-label="Moins en Quantité"> - </button><input id="produit-quantite-' + i + '" type="text" value="' + lignePanier.ArticleQuantite + '" aria-label="Quantité en commande" disabled required></input><button id="produit-plus-' + i + '" class="btn btn-default" type="button" aria-label="Plus en Quantité"> + </button><br></div></div><div class="col-lg-4 panier-fenetre--002"><p>Prix Unitaire :<input type="text" value="' + lignePanier.ArticlePrix / 100 + '" aria-label="Prix Unitaire" disabled required> €</input></p><p>Prix Total :<input type="text" value="' + totalLigne + '" aria-label="Prix Total" disabled required> €</input></p></div></article>';
+            document.getElementById("JS").innerHTML += '<article class="panier-fenetre col-lg-12"><div class="col-lg-3"><img src="' + lignePanier.ArticleImage + '" class="img-responsive" alt="Photo ' + lignePanier.ArticleDescription + '"><div class="form-group hidden"><label for="panier-ref' + i + '" class="control-label col-sm-2">Référence :</label><div class="col-lg-10"><input class="form-control-static" type="text" id="panier-ref' + i + '" name="panier-ref' + i + '" required></p></div></div></div><div class="col-lg-5"><p>Produit : ' + lignePanier.ArticleNom + '</p><p>Couleur : ' + lignePanier.ArticleCouleur + ' </p><div class="panier-fenetre--003"><a onclick="panier_bouton_moins(' + i + ')" class="btn btn-default"> + </a><input id="produit-quantite-' + i + '" type="text" value="' + lignePanier.ArticleQuantite + '" aria-label="Quantité en commande" disabled required></input><a onclick="panier_bouton_plus(' + i + ')" class="btn btn-default"> + </a><br></div></div><div class="col-lg-4 panier-fenetre--002"><p>Prix Unitaire :<input type="text" value="' + lignePanier.ArticlePrix / 100 + '" aria-label="Prix Unitaire" disabled required> €</input></p><p>Prix Total :<input type="text" value="' + totalLigne + '" aria-label="Prix Total" disabled required> €</input></p></div></article>';
             totalLigne = (lignePanier.ArticlePrix / 100) * lignePanier.ArticleQuantite;
             totalCommande = totalCommande + (+totalLigne);
             console.log("Total Ligne : " + totalLigne);
@@ -50,8 +50,92 @@ for (let i = 1; i < nbLignePanier + 1; i++) {
     }
 }
 
-// PANIER - Affichage Total Commande
+// PANIER - AFFICHAGE TOTAL COMMANDE
 document.getElementById("panier_total").innerText = "Total de la Commande : " + totalCommande + " €";
+if (totalCommande == 0) {
+    window.location.href = "index.html";
+}
+
+
+// PANIER - GESTION DES QUANTITES
+function panier_bouton_moins(x) {
+    console.log(x);
+    produitQuantite = document.getElementById("produit-quantite-" + x);
+
+    if (produitQuantite.value <= 1) {
+        produitQuantite.value = 0;
+        document.getElementById("produit-quantite-" + x).innerText = produitQuantite.value + ' ';
+
+    } else {
+
+        document.getElementById("produit-quantite-" + x).innerText = (--produitQuantite.value) + '';
+
+    }
+
+    // PANIER - MAJ LocalHost
+    lignePanierobjet_json = localStorage.getItem("lignePanier" + x);
+    console.log("PANIER - Téléchargement Ligne Panier n° " + x + " -- En cours");
+    lignePanierobjet = JSON.parse(lignePanierobjet_json);
+    lignePanier = lignePanierobjet;
+    console.log("PANIER - Téléchargement Ligne Panier n° " + x + " -- Téléchargée");
+    console.log(lignePanier);
+
+    var articleobjet = {
+        ArticleID: lignePanier.ArticleID,
+        ArticleNom: lignePanier.ArticleNom,
+        ArticleImage: lignePanier.ArticleImage,
+        ArticleCouleur: lignePanier.ArticleCouleur,
+        ArticleDescription: lignePanier.ArticleDescription,
+        ArticlePrix: lignePanier.ArticlePrix,
+        ArticleQuantite: produitQuantite.value,
+    };
+    var articleobjet_json = JSON.stringify(articleobjet);
+    localStorage.setItem("lignePanier" + x, articleobjet_json);
+    console.log("PRODUIT - MAJ LocalStorage - " + x + "  ligne Panier effectué");
+
+    alert("CONTROLE LOCALHOST");
+
+
+    window.location.href = "panier.html";
+
+}
+
+
+
+function panier_bouton_plus(x) {
+    console.log(x);
+    produitQuantite = document.getElementById("produit-quantite-" + x);
+    document.getElementById("produit-quantite-" + x).innerText = (++produitQuantite.value) + '';
+
+    // PANIER - MAJ LocalHost
+    lignePanierobjet_json = localStorage.getItem("lignePanier" + x);
+    console.log("PANIER - Téléchargement Ligne Panier n° " + x + " -- En cours");
+    lignePanierobjet = JSON.parse(lignePanierobjet_json);
+    lignePanier = lignePanierobjet;
+    console.log("PANIER - Téléchargement Ligne Panier n° " + x + " -- Téléchargée");
+    console.log(lignePanier);
+
+    var articleobjet = {
+        ArticleID: lignePanier.ArticleID,
+        ArticleNom: lignePanier.ArticleNom,
+        ArticleImage: lignePanier.ArticleImage,
+        ArticleCouleur: lignePanier.ArticleCouleur,
+        ArticleDescription: lignePanier.ArticleDescription,
+        ArticlePrix: lignePanier.ArticlePrix,
+        ArticleQuantite: produitQuantite.value,
+    };
+    var articleobjet_json = JSON.stringify(articleobjet);
+    localStorage.setItem("lignePanier" + x, articleobjet_json);
+    console.log("PRODUIT - MAJ LocalStorage - " + x + "  ligne Panier effectué");
+
+    alert("CONTROLE LOCALHOST");
+
+
+    window.location.href = "panier.html";
+
+}
+
+
 
 
 
