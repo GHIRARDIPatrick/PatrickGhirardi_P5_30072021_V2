@@ -13,9 +13,11 @@ if (indexobjet_json != null) {
     window.location.href = "index.html";
 }
 
-
+console.log("ID Recherché : " + selectionid);
+recherche = "http://127.0.0.1:3000/api/teddies?" + selectionid;
+console.log("ID Recherché : " + recherche);
 // PRODUIT - RECHERCHE INFORMATIONS PRODUIT
-fetch("http://127.0.0.1:3000/api/teddies/?_id=' + produit_id[0] + '")
+fetch(recherche)
     .then(function(res) {
         if (res.ok) {
             console.log("INDEX - Connexion Server GET : res.ok ");
