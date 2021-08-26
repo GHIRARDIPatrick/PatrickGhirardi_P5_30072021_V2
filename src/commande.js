@@ -38,7 +38,11 @@ for (let i = 1; i < nbLignePanier + 1; i++) {
         totalCommande = totalCommande + (+totalLigne);
         console.log("Total Ligne : " + totalLigne);
         console.log("Total Commande : " + totalCommande);
-        listeLignePanierID = listeLignePanierID + lignePanier.ArticleID + ",";
+        if (listeLignePanierID == "") {
+            listeLignePanierID = lignePanier.ArticleID
+        } else {
+            listeLignePanierID = listeLignePanierID + "," + lignePanier.ArticleID;
+        }
     }
 };
 
@@ -49,20 +53,22 @@ if (contactobjet_json != null) {
     contact = contactobjet;
     console.log("CONTACT - Téléchargement LocalStorage : OUI ");
 
-    var contact = [{
+    var contact = {
         firstName: contact.ContactPrenom,
         lastName: contact.ContactNom,
         address: contact.ContactAdresse,
         city: contact.ContactCpostal + " " + contact.ContactVille,
         email: contact.ContactEmail,
-    }];
+    };
 
-    var products = '"' + lignePanier.ArticleID + '"';
+    var products = [lignePanier.ArticleID];
 
 };
 
-console.log(contact);
-console.log(products);
+essai = { 'contact': contact, 'products': products };
+console.log(essai);
+
+
 
 fetch("http://127.0.0.1:3000/api/teddies/order", {
         method: "POST",
@@ -75,13 +81,12 @@ fetch("http://127.0.0.1:3000/api/teddies/order", {
     })
     .then(function(res) {
         if (res.ok) {
-            alert("RES.JSON : " & res.json);
+            console.log("POST -> RES.JSON : OK");
             return res.json();
         }
     })
     .then(function(value) {
-        alert("Retour" + value.postData.text);
-        // document
-        //     .getElementById("result")
-        //     .innerText = value.postData.text;
+        console.log("N° de Commande : " + value.orderId);
+        document.getElementById("Commande-Numero").innerText = "n° " + value.orderId;
+        document.getElementById("Commande-Total").innerText = "Le montant de votre commande : " + totalCommande + " euros ";
     });
