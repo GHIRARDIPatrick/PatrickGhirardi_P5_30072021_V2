@@ -300,15 +300,6 @@ function contact_maj() {
 }
 
 
-// PANIER - BOUTON VALIDATION
-// document.getElementById("panier-validation").addEventListener("click", function() {
-
-
-// });
-
-
-
-
 
 
 // PANIER - FENETRE MESSAGE ERREUR FORMULAIRE

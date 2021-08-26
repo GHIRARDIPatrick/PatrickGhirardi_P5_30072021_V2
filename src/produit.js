@@ -79,10 +79,10 @@ document
         } else {
             if (produitQuantite.value < 1) {
                 document.getElementById("produit-commande").disabled = true;
-                document.getElementById("produit-quantite").innerText = (--produitQuantite) + '';
+                document.getElementById("produit-quantite").innerText = (--produitQuantite);
 
             } else {
-                document.getElementById("produit-quantite").innerText = (--produitQuantite) + '';
+                document.getElementById("produit-quantite").innerText = (--produitQuantite);
             }
         }
 
@@ -140,7 +140,7 @@ document.getElementById("produit-commande").addEventListener("click", function()
             // COMMANDE - recherche si article déjà existant
             numeroarticle = 0;
             console.log("PRODUIT - Lignes panier > 1");
-            for (let i = 1; i < nbLignePanier; i++) {
+            for (let i = 1; i < nbLignePanier + 1; i++) {
                 articleobjet_json = localStorage.getItem("lignePanier" + i);
                 if (articleobjet_json != null) {
                     console.log("PRODUIT - Lignes panier > 1 - Recherche si Article déjà dans panier - Article " + i);

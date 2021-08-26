@@ -63,30 +63,52 @@ if (contactobjet_json != null) {
 
     var products = [lignePanier.ArticleID];
 
+
+
+    essai = { 'contact': contact, 'products': products };
+    console.log(essai);
+
+
+
+    fetch("http://127.0.0.1:3000/api/teddies/order", {
+            method: "POST",
+            headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ 'contact': contact, 'products': products }),
+
+        })
+        .then(function(res) {
+            if (res.ok) {
+                console.log("POST -> RES.JSON : OK");
+                return res.json();
+            }
+        })
+        .then(function(value) {
+            // AFFICHAGE COMMANDE VALIDATION
+            console.log("N° de Commande : " + value.orderId);
+            document.getElementById("Commande-Numero").innerText = "n° " + value.orderId;
+            document.getElementById("Commande-Total").innerText = "Le montant de votre commande : " + totalCommande + " euros ";
+
+            // SUPPRESSION LOCALHOST - COMMANDE EN COURS sauf CONTACT
+            localStorage.removeItem("index");
+            console.log("COMMANDE - Suppression LOCALHOST de l'index - Effectuée");
+            localStorage.removeItem("Nb_Ligne_Panier");
+            console.log("COMMANDE - Suppression LOCALHOST du Nb Ligne Panier - Effectuée");
+            for (let i = 1; i < nbLignePanier + 1; i++) {
+                lignePanierobjet_json = localStorage.getItem("lignePanier" + i);
+                if (lignePanierobjet_json != null) {
+                    console.log("COMMANDE - Suppression LOCALHOST Ligne Panier n° " + i + " - Effectuée");
+                    localStorage.removeItem("lignePanier" + i);
+                }
+            }
+
+
+        });
+
+
+
+} else {
+    window.location.href = "index.html";
 };
-
-essai = { 'contact': contact, 'products': products };
-console.log(essai);
-
-
-
-fetch("http://127.0.0.1:3000/api/teddies/order", {
-        method: "POST",
-        headers: {
-            'Accept': 'application/json',
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({ 'contact': contact, 'products': products }),
-
-    })
-    .then(function(res) {
-        if (res.ok) {
-            console.log("POST -> RES.JSON : OK");
-            return res.json();
-        }
-    })
-    .then(function(value) {
-        console.log("N° de Commande : " + value.orderId);
-        document.getElementById("Commande-Numero").innerText = "n° " + value.orderId;
-        document.getElementById("Commande-Total").innerText = "Le montant de votre commande : " + totalCommande + " euros ";
-    });
