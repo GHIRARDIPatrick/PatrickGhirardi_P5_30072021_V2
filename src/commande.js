@@ -1,6 +1,6 @@
 // COMMANDE - Variables
 var messageErreur;
-
+listeLignePanierID = "";
 
 console.log("JS COMMANDE - Ca fonctionne");
 
@@ -38,6 +38,7 @@ for (let i = 1; i < nbLignePanier + 1; i++) {
         totalCommande = totalCommande + (+totalLigne);
         console.log("Total Ligne : " + totalLigne);
         console.log("Total Commande : " + totalCommande);
+        listeLignePanierID = listeLignePanierID + lignePanier.ArticleID + ",";
     }
 };
 
@@ -49,30 +50,28 @@ if (contactobjet_json != null) {
     console.log("CONTACT - Téléchargement LocalStorage : OUI ");
 
     var contact = [{
-        firstName: contact.ContactPrenom.value,
-        lastName: contact.ContactNom.value,
-        address: contact.ContactAdresse.value,
-        city: contact.ContactCpostal.value + " " + contact.ContactVille.value,
-        email: contact.ContactEmail.value
+        firstName: contact.ContactPrenom,
+        lastName: contact.ContactNom,
+        address: contact.ContactAdresse,
+        city: contact.ContactCpostal + " " + contact.ContactVille,
+        email: contact.ContactEmail,
     }];
 
-    var order = [{
-        id: lignePanier.ArticleID,
-        name: lignePanier.ArticleNom,
-        imageUrl: lignePanier.ArticleImage,
-        description: lignePanier.ArticleDescription,
-        price: lignePanier.ArticlePrix,
-        quantity: lignePanier.ArticleQuantite
-    }];
+    var products = '"' + lignePanier.ArticleID + '"';
+
 };
 
-fetch('http://127.0.0.1:3000/order', {
+console.log(contact);
+console.log(products);
+
+fetch("http://127.0.0.1:3000/api/teddies/order", {
         method: "POST",
         headers: {
             'Accept': 'application/json',
             'Content-Type': 'application/json'
         },
-        body: JSON.stringify(contact, order),
+        body: JSON.stringify({ 'contact': contact, 'products': products }),
+
     })
     .then(function(res) {
         if (res.ok) {

@@ -14,8 +14,7 @@ if (indexobjet_json != null) {
 }
 
 console.log("ID Recherché : " + selectionid);
-recherche = "http://127.0.0.1:3000/api/teddies?" + selectionid;
-console.log("ID Recherché : " + recherche);
+recherche = "http://127.0.0.1:3000/api/teddies/" + selectionid;
 // PRODUIT - RECHERCHE INFORMATIONS PRODUIT
 fetch(recherche)
     .then(function(res) {
@@ -25,38 +24,36 @@ fetch(recherche)
         }
     })
     .then(function(resultat) {
-        console.log("PRODUIT - Lecture des résultats du GET");
-        var produitNombre = resultat.length;
-        produit = resultat;
-        console.log("PRODUIT - Lecture résultat " + resultat);
-        console.log("PRODUIT - Nb Articles téléchargés : " + produitNombre)
+            console.log("PRODUIT - Lecture des résultats du GET");
+            var produitNombre = resultat.length;
+            produit = resultat;
+            console.log("PRODUIT - Lecture résultat " + resultat);
+            console.log("PRODUIT - Nb Articles téléchargés : " + produitNombre);
+            console.log("PRODUIT - ID téléchargé : " + produit._id);
 
-        // PRODUIT - MODIFICATION PAGE HTML INFORMATIONS PRODUIT
-        for (let i = 0; i < produitNombre; i++) {
-            if (produit[i]._id == selectionid) {
-                document.getElementById("produit-id").innerText = produit[i]._id;
-                document.getElementById("produit-nom").innerText = produit[i].name;
-                document.getElementById("JS-image").innerHTML += '<div class="col-lg-6"><img src="' + produit[i].imageUrl + '" alt="Photo ' + produit[i].description + '"></div>';
-                produitImage = produit[i].imageUrl;
-                document.getElementById("produit-description").innerText = produit[i].description;
-                produitDescription = produit[i].description;
-                document.getElementById("produit-prix").innerText = "Prix : " + (produit[i].price / 100) + " euros";
+            // PRODUIT - MODIFICATION PAGE HTML INFORMATIONS PRODUIT
 
-                if (produit[i].colors.length == 1) {
-                    document.getElementById("produit-couleur-selection").innerHTML += '<option value="' + produit[i].colors[0] + '">' + produit[i].colors[0] + '</option>'
-                } else {
-                    document.getElementById("produit-couleur-selection").innerHTML = '<option value="">--Choisissez une couleur--</option>'
-                    for (let t = 0; t < produit[i].colors.length; t++) {
-                        document.getElementById("produit-couleur-selection").innerHTML += '<option value="' + produit[i].colors[t] + '">' + produit[i].colors[t] + '</option>'
-                    }
+            document.getElementById("produit-id").innerText = produit._id;
+            document.getElementById("produit-nom").innerText = produit.name;
+            document.getElementById("JS-image").innerHTML += '<div class="col-lg-6"><img src="' + produit.imageUrl + '" alt="Photo ' + produit.description + '"></div>';
+            produitImage = produit.imageUrl;
+            document.getElementById("produit-description").innerText = produit.description;
+            produitDescription = produit.description;
+            document.getElementById("produit-prix").innerText = "Prix : " + (produit.price / 100) + " euros";
+
+            if (produit.colors.length == 1) {
+                document.getElementById("produit-couleur-selection").innerHTML += '<option value="' + produit.colors[0] + '">' + produit.colors[0] + '</option>'
+            } else {
+                document.getElementById("produit-couleur-selection").innerHTML = '<option value="">--Choisissez une couleur--</option>'
+                for (let t = 0; t < produit.colors.length; t++) {
+                    document.getElementById("produit-couleur-selection").innerHTML += '<option value="' + produit.colors[t] + '">' + produit.colors[t] + '</option>'
                 }
-
-
             }
+
+
         }
 
-
-    })
+    )
     .catch(function(err) {
         // Une erreur est survenue
         console.log("INDEX - Erreur dans le GET");
@@ -146,7 +143,7 @@ document.getElementById("produit-commande").addEventListener("click", function()
             for (let i = 1; i < nbLignePanier; i++) {
                 articleobjet_json = localStorage.getItem("lignePanier" + i);
                 if (articleobjet_json != null) {
-                    console.log("PRODUIT - Lignes panier > 1 - Recherche si Article déjà dans panier");
+                    console.log("PRODUIT - Lignes panier > 1 - Recherche si Article déjà dans panier - Article " + i);
                     articleobjet = JSON.parse(articleobjet_json);
 
                     if (articleobjet.ArticleID == selectionid && articleobjet.ArticleCouleur == produitCouleur.value) {
