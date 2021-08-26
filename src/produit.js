@@ -186,8 +186,8 @@ document.getElementById("produit-commande").addEventListener("click", function()
 
 
         //PRODUIT - Article mis 
-        Alert("Article mis dans votre panier.");
-        window.location.href = "index.html";
+        messageErreur("Article mis dans votre panier.");
+        // window.location.href = "index.html";
 
     } else {
         messageErreur("Merci de renseigner une couleur");
