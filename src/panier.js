@@ -1,9 +1,10 @@
 // ________________________________________________________________________________________________________________
-// PANIER - Variables
+// PANIER - VARIABLE
 var messageErreur;
 
-
 console.log("JS PANIER - Ca fonctionne");
+
+
 
 // CONTROLE SI FICHIERS LOCALHOST EXISTENT
 indexobjet_json = localStorage.getItem("index");
@@ -25,6 +26,7 @@ if (nbLignePanierobjet_json != null) {
 }
 
 
+
 // PANIER - AFFICHAGE PANIER
 totalCommande = 0;
 for (let i = 1; i < nbLignePanier + 1; i++) {
@@ -38,23 +40,23 @@ for (let i = 1; i < nbLignePanier + 1; i++) {
 
 
         if (lignePanier.ArticleQuantite > 0) {
-            //document.getElementById("JS").innerHTML += '<article class="panier-fenetre col-lg-12"><div class="col-lg-3"><img src="images/teddy_1.jpg" class="img-responsive" alt="Photo peluche"><div class="form-group hidden"><label for="panier-ref" class="control-label col-sm-2">Référence :</label><div class="col-lg-10"><input class="form-control-static" type="text" id="panier-ref" name="panier-ref" required></p></div></div></div><div class="col-lg-5"><p>Produit : Teddy 1</p><p>Couleur : </p><div class="panier-fenetre--003">                <button id="produit-moins" class="btn btn-default" type="button" aria-label="Moins en Quantité"> - </button><input id="produit-quantite" type="text" value="1" aria-label="Quantité en commande" disabled required></input><button id="produit-plus" class="btn btn-default" type="button" aria-label="Plus en Quantité"> + </button><br></div></div><div class="col-lg-4 panier-fenetre--002"><p>Prix Unitaire :<input type="text" value="1 000.00" aria-label="Prix Unitaire" disabled required> €</input></p><p>Prix Total :<input type="text" value="200.00" aria-label="Prix Total" disabled required> €</input></p></div></article>';
             totalLigne = (lignePanier.ArticlePrix / 100) * lignePanier.ArticleQuantite;
-            document.getElementById("JS").innerHTML += '<article class="panier-fenetre col-lg-12"><div class="col-lg-3"><img src="' + lignePanier.ArticleImage + '" class="img-responsive" alt="Photo ' + lignePanier.ArticleDescription + '"><div class="form-group hidden"><label for="panier-ref' + i + '" class="control-label col-sm-2">Référence :</label><div class="col-lg-10"><input class="form-control-static" type="text" id="panier-ref' + i + '" name="panier-ref' + i + '" required></p></div></div></div><div class="col-lg-5"><p>Produit : ' + lignePanier.ArticleNom + '</p><p>Couleur : ' + lignePanier.ArticleCouleur + ' </p><div class="panier-fenetre--003"><a onclick="panier_bouton_moins(' + i + ')" class="btn btn-default"> + </a><input id="produit-quantite-' + i + '" type="text" value="' + lignePanier.ArticleQuantite + '" aria-label="Quantité en commande" disabled required></input><a onclick="panier_bouton_plus(' + i + ')" class="btn btn-default"> + </a><br></div></div><div class="col-lg-4 panier-fenetre--002"><p>Prix Unitaire :<input type="text" value="' + lignePanier.ArticlePrix / 100 + '" aria-label="Prix Unitaire" disabled required> €</input></p><p>Prix Total :<input type="text" value="' + totalLigne + '" aria-label="Prix Total" disabled required> €</input></p></div></article>';
+            document.getElementById("JS").innerHTML += '<article class="panier-fenetre col-lg-12"><div class="col-lg-3"><img src="' + lignePanier.ArticleImage + '" class="img-responsive" alt="Photo ' + lignePanier.ArticleDescription + '"><div class="form-group hidden"><label for="panier-ref' + i + '" class="control-label col-sm-2">Référence :</label><div class="col-lg-10"><input class="form-control-static" type="text" id="panier-ref' + i + '" name="panier-ref' + i + '" required></p></div></div></div><div class="col-lg-5"><p>Produit : ' + lignePanier.ArticleNom + '</p><p>Couleur : ' + lignePanier.ArticleCouleur + ' </p><div class="panier-fenetre--003"><a onclick="panier_bouton_moins(' + i + ')" class="btn btn-default"> - </a><input id="produit-quantite-' + i + '" type="text" value="' + lignePanier.ArticleQuantite + '" aria-label="Quantité en commande" disabled required></input><a onclick="panier_bouton_plus(' + i + ')" class="btn btn-default"> + </a><br></div></div><div class="col-lg-4 panier-fenetre--002"><p>Prix Unitaire :<input type="text" value="' + lignePanier.ArticlePrix / 100 + '" aria-label="Prix Unitaire" disabled required> €</input></p><p>Prix Total :<input type="text" value="' + totalLigne + '" aria-label="Prix Total" disabled required> €</input></p></div></article>';
             totalLigne = (lignePanier.ArticlePrix / 100) * lignePanier.ArticleQuantite;
             totalCommande = totalCommande + (+totalLigne);
             console.log("Total Ligne : " + totalLigne);
             console.log("Total Commande : " + totalCommande);
         }
-
     }
 }
+
+
 
 // PANIER - AFFICHAGE TOTAL COMMANDE
 document.getElementById("panier_total").innerText = "Total de la Commande : " + totalCommande + " €";
 if (totalCommande == 0) {
     localStorage.removeItem("Nb_Ligne_Panier");
-    console.log("PANIER - Suppression LOCALHOST du Nb Ligne Panier - Effectuée");
+    console.log("PANIER - Suppression LOCALHOST du Nb Lignes Panier - Effectuée");
     for (let i = 1; i < nbLignePanier + 1; i++) {
         lignePanierobjet_json = localStorage.getItem("lignePanier" + i);
         if (lignePanierobjet_json != null) {
@@ -66,7 +68,8 @@ if (totalCommande == 0) {
 }
 
 
-// PANIER - GESTION DES QUANTITES
+
+// PANIER - GESTION DES QUANTITES MOINS
 function panier_bouton_moins(x) {
     console.log(x);
     produitQuantite = document.getElementById("produit-quantite-" + x);
@@ -78,7 +81,6 @@ function panier_bouton_moins(x) {
     } else {
 
         document.getElementById("produit-quantite-" + x).innerText = (--produitQuantite.value) + '';
-
     }
 
     // PANIER - MAJ LocalHost
@@ -103,11 +105,11 @@ function panier_bouton_moins(x) {
     console.log("PRODUIT - MAJ LocalStorage - " + x + "  ligne Panier effectué");
 
     window.location.href = "panier.html";
-
 }
 
 
 
+// PANIER - GESTION DES QUANTITES PLUS
 function panier_bouton_plus(x) {
     console.log(x);
     produitQuantite = document.getElementById("produit-quantite-" + x);
@@ -135,7 +137,6 @@ function panier_bouton_plus(x) {
     console.log("PRODUIT - MAJ LocalStorage - " + x + "  ligne Panier effectué");
 
     window.location.href = "panier.html";
-
 }
 
 
@@ -200,14 +201,11 @@ if (contactobjet_json != null) {
     } else {
         document.getElementById("panier-email").style.backgroundColor = 'chartreuse';
     }
-
-
-
 }
 
 
-// CONTACT - CONTROLE FORMULAIRE
 
+// CONTACT - CONTROLE FORMULAIRE
 document.getElementById("panier-prenom").addEventListener("input", function() {
     var code = document.getElementById("panier-prenom").value;
     if (!code.match(/^([a-zA-Z -]+)$/)) {
@@ -217,7 +215,7 @@ document.getElementById("panier-prenom").addEventListener("input", function() {
     } else {
         document.getElementById("panier-prenom").style.backgroundColor = 'chartreuse';
         document.getElementById("panier-validation").disabled = false;
-        contact_maj() = "";
+        contact_maj();
     }
 });
 
@@ -230,7 +228,7 @@ document.getElementById("panier-nom").addEventListener("input", function() {
     } else {
         document.getElementById("panier-nom").style.backgroundColor = 'chartreuse';
         document.getElementById("panier-validation").disabled = false;
-        contact_maj() = "";
+        contact_maj();
     }
 });
 
@@ -243,7 +241,7 @@ document.getElementById("panier-adresse").addEventListener("input", function() {
     } else {
         document.getElementById("panier-adresse").style.backgroundColor = 'chartreuse';
         document.getElementById("panier-validation").disabled = false;
-        contact_maj() = "";
+        contact_maj();
     }
 });
 
@@ -256,7 +254,7 @@ document.getElementById("panier-cpostal").addEventListener("input", function() {
     } else {
         document.getElementById("panier-cpostal").style.backgroundColor = 'chartreuse';
         document.getElementById("panier-validation").disabled = false;
-        contact_maj() = "";
+        contact_maj();
     }
 });
 
@@ -269,7 +267,7 @@ document.getElementById("panier-ville").addEventListener("input", function() {
     } else {
         document.getElementById("panier-ville").style.backgroundColor = 'chartreuse';
         document.getElementById("panier-validation").disabled = false;
-        contact_maj() = "";
+        contact_maj();
     }
 });
 
@@ -281,7 +279,7 @@ document.getElementById("panier-email").addEventListener("input", function() {
     } else {
         document.getElementById("panier-email").style.backgroundColor = 'chartreuse';
         document.getElementById("panier-validation").disabled = false;
-        contact_maj() = "";
+        contact_maj();
     }
 });
 
