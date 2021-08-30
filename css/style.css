@@ -80,20 +80,29 @@ footer img {
   background-color: white;
   border: #f3e9f1 2px solid;
   border-radius: 10%;
+  width: 90%;
+  height: 300px;
   color: #9d9d9d;
-  max-width: 90%;
-  max-height: auto;
   margin: 2% 5%;
 }
 @media screen and (min-width: 992px) {
   .liste-produit article {
     margin: auto;
+    height: 380px;
   }
 }
 .liste-produit article img {
-  margin-top: 3%;
-  width: 95%;
+  border-radius: 10%;
+  padding-top: 5%;
   padding-left: 5%;
+  width: 95%;
+  height: 200px;
+  object-fit: cover;
+}
+@media screen and (min-width: 992px) {
+  .liste-produit article img {
+    height: 280px;
+  }
 }
 .liste-produit article h2 {
   padding-left: 5%;

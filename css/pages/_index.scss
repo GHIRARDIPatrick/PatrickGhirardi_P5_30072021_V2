@@ -17,17 +17,24 @@
         background-color: white;
         border: $couleur-fond-de-page 2px solid;
         border-radius: 10%;
+        width: 90%;
+        height: 300px;
         color: $couleur-txt-nav;
-        max-width: 90%;
-        max-height: auto;
         margin: 2% 5%;
         @media screen and (min-width: 992px) {
             margin: auto;
+            height: 380px;
         }
         img {
-            margin-top: 3%;
-            width: 95%;
+            border-radius: 10%;
+            padding-top: 5%;
             padding-left: 5%;
+            width: 95%;
+            height: 200px;
+            object-fit: cover;
+            @media screen and (min-width: 992px) {
+                height: 280px;
+            }
         }
         h2 {
             padding-left: 5%;

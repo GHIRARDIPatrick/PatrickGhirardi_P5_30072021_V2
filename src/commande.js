@@ -104,7 +104,7 @@ if (contactobjet_json != null) {
             // AFFICHAGE COMMANDE VALIDATION
             console.log("N° de Commande : " + value.orderId);
             document.getElementById("Commande-Numero").innerText = "n° " + value.orderId;
-            document.getElementById("Commande-Total").innerText = "Le montant de votre commande : " + totalCommande + " euros ";
+            document.getElementById("Commande-Total").innerText = "Le montant de votre commande est de " + totalCommande + " euros ";
 
             // SUPPRESSION LOCALHOST - COMMANDE EN COURS sauf CONTACT
             localStorage.removeItem("index");
