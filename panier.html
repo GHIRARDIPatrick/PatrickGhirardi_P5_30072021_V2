@@ -69,37 +69,6 @@
         <section class="col-sm-12 col-lg-6">
             <h2>Liste de votre commande</h2>
 
-            <!-- Liste Article -->
-            <!-- <article class="panier-fenetre col-lg-12">
-                <div class="col-lg-3">
-                    <img src="images/teddy_1.jpg" class="img-responsive" alt="Photo peluche d'ourson avec un poil marron très dense et doux">
-                    <div class="form-group hidden">
-                        <label for="panier-ref" class="control-label col-sm-2">Référence :</label>
-                        <div class="col-lg-10">
-                            <input class="form-control-static" type="text" id="panier-ref" name="panier-ref" required></p>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-lg-5">
-                    <p>Produit : Teddy 1</p>
-                    <p>Couleur : </p>
-                    <div class="panier-fenetre--003">
-                        <button id="produit-moins" class="btn btn-default" type="button" aria-label="Moins en Quantité"> - </button>
-                        <input id="produit-quantite" type="text" value="1" aria-label="Quantité en commande" disabled required></input>
-                        <button id="produit-plus" class="btn btn-default" type="button" aria-label="Plus en Quantité"> + </button><br>
-                    </div>
-                </div>
-
-                <div class="col-lg-4 panier-fenetre--002">
-                    <p>Prix Unitaire :
-                        <input type="text" value="1 000.00" aria-label="Prix Unitaire" disabled required> €</input>
-                    </p>
-                    <p>Prix Total :
-                        <input type="text" value="200.00" aria-label="Prix Total" disabled required> €</input>
-                    </p>
-                </div>
-            </article> -->
 
             <!-- Article PAR JS -->
             <div id="JS"></div>
@@ -107,7 +76,7 @@
 
             <!-- Total Commande -->
             <article class="panier-fenetre panier-fenetre-total col-lg-12">
-                <p id="panier_total" class="h4">Total TTC : 1 000.00 euros</p>
+                <h2 id="panier_total" class="h4">Total TTC : 1 000.00 euros</h2>
             </article>
         </section>
 
@@ -131,39 +100,39 @@
                 <div class="form-group">
                     <label for="panier-prenom" class="control-label col-sm-2">Prénom :</label>
                     <div class="col-lg-10">
-                        <input class="form-control-static" type="text" id="panier-prenom" name="panier-prenom" required></p>
+                        <input class="form-control-static" type="text" id="panier-prenom" name="panier-prenom" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="panier-nom" class="control-label col-sm-2">Nom :</label>
                     <div class="col-lg-10">
-                        <input class="form-control-static" type="text" id="panier-nom" name="panier-nom" required></p>
+                        <input class="form-control-static" type="text" id="panier-nom" name="panier-nom" required>
                     </div>
                 </div>
                 <div class="form-group">
                     <label for="panier-adresse" class="control-label col-sm-2">Adresse :</label>
                     <div class="col-lg-10">
-                        <input class="form-control-static" type="text" id="panier-adresse" name="panier-adresse" required></p>
+                        <input class="form-control-static" type="text" id="panier-adresse" name="panier-adresse" required>
                     </div>
                 </div>
                 <div class="form-group ">
                     <label for="panier-ville" class="control-label col-sm-2 ">Ville :</label>
                     <div class="col-lg-2">
-                        <input id="panier-cpostal" name="panier-ville" class="form-control-static" type="text" alt="Code Postal" pattern="/^([0-9]){5}$/)" minlength="5" maxlength="5" placeholder="CPostal" required></p>
+                        <input id="panier-cpostal" name="panier-ville" class="form-control-static" type="text" pattern="/^([0-9]){5}$/)" minlength="5" maxlength="5" placeholder="CPostal" required>
                     </div>
                     <div class="col-lg-8">
-                        <input id="panier-ville" name="panier-ville" class="form-control-static panier-ville--002" type="text" alt="Ville" pattern="/^([a-z]){1,}$/)" placeholder="Ville" required></p>
+                        <input id="panier-ville" name="panier-ville" class="form-control-static panier-ville--002" type="text" pattern="/^([a-z]){1,}$/)" placeholder="Ville" required>
                     </div>
                 </div>
                 <div class="form-group ">
                     <label for="panier-email" class="control-label col-sm-2 ">Email :</label>
                     <div class="col-lg-10">
-                        <input class="form-control-static" type="email" id="panier-email" name="panier-email" required></p>
+                        <input class="form-control-static" type="email" id="panier-email" name="panier-email" required>
                     </div>
                 </div>
                 <div class="form-group ">
                     <div class="col-sm-offset-2 col-sm-10 ">
-                        <button id="panier-validation" name="panier-validation" type="submit " class="btn btn-default ">Validation de votre commande</button>
+                        <button id="panier-validation" name="panier-validation" type="submit" class="btn btn-default ">Validation de votre commande</button>
                     </div>
                 </div>
             </form>
